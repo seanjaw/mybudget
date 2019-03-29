@@ -1,10 +1,10 @@
 import React from 'react';
 
 const ListRow = (props) => {
-   const {item, value, id } = props.list
+   const {description, value, id } = props.list
     return(
         <tr>
-            <td>{item}</td>
+            <td>{description}</td>
             <td>{value}</td>
             <td className='center'>
                 <button onClick={()=>{props.delete(id)}} className="btn btn-small red darken-2">Delete</button>
