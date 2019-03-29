@@ -17,6 +17,7 @@ class AddItem extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
+        console.log(this.state)
     }
 
     resetForm = () =>{
@@ -24,6 +25,7 @@ class AddItem extends Component {
             description: '',
             value:''
         });
+      
     }
     render(){
         const {description, value} = this.state; 
@@ -33,8 +35,8 @@ class AddItem extends Component {
             <form onSubmit={this.handleSubmit}>
             <div className="row">
                 <div className="col input-field s10 offset-s1">
-                    <input onChange= {this.handleKeyPress} name="description" type="text" id="name" value={description}/>
-                    <label htmlFor="name">Description</label>
+                    <input onChange= {this.handleKeyPress} name="description" type="text" id="description" value={description}/>
+                    <label htmlFor="description">Description</label>
                 </div>
             </div>
             <div className="row">

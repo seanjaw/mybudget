@@ -1,27 +1,27 @@
 export default [
     {
         id: 1,
-        item: 'car lease',
+        description: 'car lease',
         value: '420',
     },
     {
         id: 2,
-        item: 'gas',
+        description: 'gas',
         value: '300',
     },
     {
         id: 3,
-        item: 'groceries',
+        description: 'groceries',
         value: '200',
     },
     {
         id: 4,
-        item: 'boba',
+        description: 'boba',
         value: '20',
     },
     {
         id: 5,
-        item: 'coffee',
+        description: 'coffee',
         value: '30',
     }
 ]
