@@ -1,30 +1,37 @@
 import React from 'react';
-import ListRow from './list_row'
-
-
+import ListRow from './list_row';
 const Table = (props) =>{
-    const listRows = props.list.map((list) => {
-        return <ListRow delete = {props.deleteItem} key={list.id}list={list}/>
-     });
+    
+    let accumulator = 0;
+    const listRows = props.list.map((item) => {
+        accumulator += item.value; 
+        return <ListRow delete = {props.deleteItem} key={item.id}list={item}/>
+        
+     }); 
+    
      return (
          
-                 <table>
-                     <thead>
+                 <table className= "highlight">
+                     <thead className= "yellow lighten-1">
                          <tr>
-                             <th>description</th>
-                             <th>value</th>
-                             <th>actions</th>
+                             <th>Description</th>
+                             <th>Value</th>
+                             <th className="center">Actions</th>
                          </tr>
                      </thead>
                      <tbody>
                         {listRows}
                      </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td>{accumulator}</td>
+                        </tr>
+                    </tfoot>
                  </table>
 
      )
 
 }
-    
-
     
 export default Table; 
