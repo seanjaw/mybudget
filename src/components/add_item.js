@@ -8,7 +8,7 @@ class AddItem extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log('form submitted', this.state)
+        // console.log('form submitted', this.state)
         this.props.add(this.state);
         this.resetForm();
     }
@@ -17,7 +17,7 @@ class AddItem extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     resetForm = () =>{
