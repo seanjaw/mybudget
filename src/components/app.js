@@ -5,7 +5,7 @@ import '../assets/css/app.scss';
 import React, { Component } from 'react';
 import Table from './table';
 import AddItem from './add_item';
-import listData from '../data/get_total';
+import listData from '../dummydata/get_total';
 import { randomString } from '../helpers';
 import NavBar from './nav_bar';
 import './app.scss';
