@@ -1,6 +1,7 @@
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
+import 'material-icons/iconfont/material-icons.scss';
 import React, { Component } from 'react';
 import Table from './table';
 import AddItem from './add_item';
@@ -50,7 +51,7 @@ class App extends Component {
         return (
             <div>
                 <NavBar />
-                <div className="grey">
+                <div>
                 <h1 className="center">April's Budget:</h1>
                 <h2 className="center">Over 9000</h2>
                 </div>

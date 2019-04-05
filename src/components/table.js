@@ -15,8 +15,11 @@ const Table = (props) =>{
                      <thead className= "yellow lighten-1">
                          <tr>
                              <th>Description</th>
+                             <th>Category</th>
                              <th>Value</th>
-                             <th className="center">Actions</th>
+                             <th>Date</th>
+                             <th>Edit</th>
+                             <th>Delete</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -25,6 +28,7 @@ const Table = (props) =>{
                     <tfoot>
                         <tr>
                             <td>Total</td>
+                            <td></td>
                             <td>{accumulator}</td>
                         </tr>
                     </tfoot>
