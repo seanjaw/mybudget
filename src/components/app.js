@@ -1,15 +1,13 @@
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
-import '../assets/css/app.scss';
 import React, { Component } from 'react';
 import Table from './table';
 import AddItem from './add_item';
 import listData from '../dummydata/get_total';
 import { randomString } from '../helpers';
 import NavBar from './nav_bar';
-import './app.scss';
-
+import '../assets/css/app.scss';
 
 
 class App extends Component {
@@ -52,8 +50,11 @@ class App extends Component {
         return (
             <div>
                 <NavBar />
+                <div className="grey">
                 <h1 className="center">April's Budget:</h1>
                 <h2 className="center">Over 9000</h2>
+                </div>
+                
                 <div className="row">
                     <div className="col s12 m8">
                         <Table deleteItem={this.deleteItem} list={this.state.list} />

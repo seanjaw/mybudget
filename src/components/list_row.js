@@ -10,7 +10,8 @@ const ListRow = (props) => {
             <td>
                 <div className="row">
                     <div className="center col s3 offset-s3">
-                        <button className="btn btn-small green darken-2">Edit</button>
+                        {/* <button className="btn btn-small green darken-2">Edit</button> */}
+                        <a className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">add</i></a>
                     </div>
 
                     <div className="center col s3">
