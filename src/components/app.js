@@ -15,10 +15,11 @@ class App extends Component {
     state = {
         list: []
     }
+
     componentDidMount() {
+        console.log('im in ')
         this.getListData();
     }
-
     getListData() {
         this.setState({
             list: listData
@@ -47,20 +48,34 @@ class App extends Component {
 
 
     }
+
+
     render() {
+        console.log('list', this.state.list)
+        let accumulator = 0;
+        this.state.list.map((item) => {
+            let parsedInteger = parseInt(item.value);
+            accumulator += parsedInteger;
+        });
         return (
             <div>
                 <NavBar />
-                <div>
-                <h1 className="center">April's Budget:</h1>
-                <h2 className="center">Over 9000</h2>
+                <div className="row remove-margin">
+                    <div className="col s12 m8 no-padding">
+                        <div className="white-text blue making-height">
+                            <div>April's Budget:</div>
+                            <div>{accumulator}</div>
+                        </div>
+                    </div>
+                    <div className="col s12 m4 no-padding">
+                        <div className="blue making-height">hi</div>
+                    </div>
                 </div>
-                
                 <div className="row">
-                    <div className="col s12 m8">
+                    <div className="col s12 m8 no-padding">
                         <Table deleteItem={this.deleteItem} list={this.state.list} />
                     </div>
-                    <div className="col s12 m4">
+                    <div className="col s12 m4 no-padding">
                         <AddItem add={this.addItem} />
                     </div>
                 </div>

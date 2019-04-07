@@ -1,25 +1,45 @@
-tfoot tr{
-    border:none
-}
-
-tr{
-    border:none
-}
-
-// .background-image{
-//     // background-image: url(../images/nature1.jpg);
-//     background-color:;
-//     background-size: cover;
-//     height:33%
+// tfoot tr{
+//     border:none
 // }
 
-
-// h1{
-//     margin-top: 0;
-//     color:white;
+// tr{
+//     border: solid 1px black;
 // }
 
+// .table-borders{
+//     border:solid 1px black;
+// }
+
+// .table-margin{
+//     margin-top:2vh;
+// }
+
+h1{
+    margin-top: 0;
+    color: white;
+}
+
+.remove-padding{
+    padding: 0;
+}
+
+.form-margins{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.making-height{
+    height:15vh;
+}
+
+.remove-margin{
+    margin-bottom:0;
+}
+
+.left-border{
+    border-left: 1px solid grey;
+}
 // h2{
-//     margin-bottom: 0;
-//     color:white;
+//     // margin-bottom: 0;
+//     color: white;
 // }

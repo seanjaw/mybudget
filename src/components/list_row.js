@@ -10,8 +10,8 @@ const ListRow = (props) => {
             <td>{category}</td>
             <td>{value}</td>
             <td>{date}</td>
-            <td><a className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons" onClick={()=>{props.delete(id)}} >edit</i></a></td>
-            <td><a className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons" onClick={()=>{props.delete(id)}} >delete</i></a></td>
+            <td><a className="btn-floating btn waves-effect waves-light black"><i className="material-icons" onClick={()=>{}} >edit</i></a></td>
+            <td><a className="btn-floating btn waves-effect waves-light black"><i className="material-icons" onClick={()=>{props.delete(id)}} >delete</i></a></td>
  
 
         </tr>
