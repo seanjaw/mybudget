@@ -9,6 +9,7 @@ import listData from '../dummydata/get_total';
 import { randomString } from '../helpers';
 import NavBar from './nav_bar';
 import '../assets/css/app.scss';
+import BreakdownBar from './breakdown_bar';
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
     componentDidMount() {
         console.log('im in ')
         this.getListData();
+        this.accumulate();
     }
     getListData() {
         this.setState({
@@ -49,27 +51,56 @@ class App extends Component {
 
     }
 
-
-    render() {
+    accumulate = () => {
         console.log('list', this.state.list)
         let accumulator = 0;
         this.state.list.map((item) => {
             let parsedInteger = parseInt(item.value);
             accumulator += parsedInteger;
         });
+        return accumulator
+    }
+
+
+
+    render() {
+        // console.log('list', this.state.list)
+        // let accumulator = 0;
+        // this.state.list.map((item) => {
+        //     let parsedInteger = parseInt(item.value);
+        //     accumulator += parsedInteger;
+        // });
+        const accumulator = this.accumulate();
         return (
-            <div>
+            <div className="yellow lighten-5 z-depth-1">
                 <NavBar />
                 <div className="row remove-margin">
-                    <div className="col s12 m8 no-padding">
-                        <div className="white-text blue making-height">
-                            <div>April's Budget:</div>
-                            <div>{accumulator}</div>
+                    <div className="col s12 m8 no-padding yellow lighten-5 making-height">
+                        <div className="col s6 valign-wrapper making-height">
+                            <div className="col s3">
+                                <div>April's Notes:</div>
+                            </div>
+                            <div className="col s9">
+                                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae maiores consequatur animi excepturi autem tempora.</div>
+                            </div>
+                        </div>
+                        <div className="col s3 making-height valign-wrapper add-vertical-line">
+                            <div className="speech-bubble speech-bubble-size center">
+                                <div className="white-text accumulation-styling">${accumulator}.00</div>
+                                <div className = "text-bottom">To Be Budgeted</div>
+                            </div>
+                        </div>
+                        <div className="col s3 making-height valign-wrapper">
+                            <div>
+                            <div>+$0.00 Funds For Mar</div>
+                            <div>-$0.00 Overspent in Feb</div>
+                            <div>-$23.00 Budgeted in Mar</div>
+                            <div>-$0.00 Budgeted in Future</div>
+                            </div>
+                            
                         </div>
                     </div>
-                    <div className="col s12 m4 no-padding">
-                        <div className="blue making-height">hi</div>
-                    </div>
+                    <BreakdownBar />
                 </div>
                 <div className="row">
                     <div className="col s12 m8 no-padding">
