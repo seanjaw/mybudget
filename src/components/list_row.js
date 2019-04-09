@@ -5,7 +5,7 @@ const ListRow = (props) => {
     console.log(props.list)
    const {description, value, id, category, date } = props.list
     return(
-        <tr>
+        <tr className="yellow lighten-5">
             <td>{description}</td>
             <td>{category}</td>
             <td>{value}</td>
