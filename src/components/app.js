@@ -10,17 +10,19 @@ import { randomString } from '../helpers';
 import NavBar from './nav_bar';
 import '../assets/css/app.scss';
 import BreakdownBar from './breakdown_bar';
-
-
+import Notes from './notes'
+import EditModal from './editModal';
+import BudgetSummary from './budget_summary';
 class App extends Component {
+    
     state = {
-        list: []
+        list: [],
+        editModalOpen: false
     }
 
     componentDidMount() {
-        console.log('im in ')
         this.getListData();
-        this.accumulate();
+        // this.accumulate();
     }
     getListData() {
         this.setState({
@@ -52,7 +54,7 @@ class App extends Component {
     }
 
     accumulate = () => {
-        console.log('list', this.state.list)
+        // console.log('list', this.state.list)
         let accumulator = 0;
         this.state.list.map((item) => {
             let parsedInteger = parseInt(item.value);
@@ -61,46 +63,51 @@ class App extends Component {
         return accumulator
     }
 
+    incomeAccumulate = () =>{
+        let posAccumulator = 0;
+        this.state.list.map((item)=>{  
+            let parsedInteger = parseInt(item.value);
+            if (parsedInteger > 0){
+                posAccumulator+=parsedInteger;
+            } 
+        })
+        return posAccumulator;
+    }
 
+    expenseAccumulate = () =>{
+        let negAccumulator = 0;
+        this.state.list.map((item)=>{  
+            let parsedInteger = parseInt(item.value);
+            if (parsedInteger < 0){
+                negAccumulator+=parsedInteger;
+            }
+        })
+        return negAccumulator*-1;
+    }
+    editModalOpen = () => {
+        this.setState({
+           editModalOpen: true,
+        });
+    }
+
+    editModalClosed = () => {
+        this.setState({
+            editModalOpen: false
+        });
+    }
 
     render() {
-        // console.log('list', this.state.list)
-        // let accumulator = 0;
-        // this.state.list.map((item) => {
-        //     let parsedInteger = parseInt(item.value);
-        //     accumulator += parsedInteger;
-        // });
+
         const accumulator = this.accumulate();
         return (
             <div className="yellow lighten-5 z-depth-1">
                 <NavBar />
                 <div className="row remove-margin">
                     <div className="col s12 m8 no-padding yellow lighten-5 making-height">
-                        <div className="col s6 valign-wrapper making-height">
-                            <div className="col s3">
-                                <div>April's Notes:</div>
-                            </div>
-                            <div className="col s9">
-                                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae maiores consequatur animi excepturi autem tempora.</div>
-                            </div>
-                        </div>
-                        <div className="col s3 making-height valign-wrapper add-vertical-line">
-                            <div className="speech-bubble speech-bubble-size center">
-                                <div className="white-text accumulation-styling">${accumulator}.00</div>
-                                <div className = "text-bottom">To Be Budgeted</div>
-                            </div>
-                        </div>
-                        <div className="col s3 making-height valign-wrapper">
-                            <div>
-                            <div>+$0.00 Funds For Mar</div>
-                            <div>-$0.00 Overspent in Feb</div>
-                            <div>-$23.00 Budgeted in Mar</div>
-                            <div>-$0.00 Budgeted in Future</div>
-                            </div>
-                            
-                        </div>
+                        <Notes/>
+                        <BudgetSummary accumulator={accumulator}/>
                     </div>
-                    <BreakdownBar />
+                    <BreakdownBar posAccumulator={this.incomeAccumulate()} negAccumulator={this.expenseAccumulate()} />
                 </div>
                 <div className="row">
                     <div className="col s12 m8 no-padding">
@@ -110,7 +117,10 @@ class App extends Component {
                         <AddItem add={this.addItem} />
                     </div>
                 </div>
+                <div>
+            </div>
 
+                
             </div>
         )
     }
