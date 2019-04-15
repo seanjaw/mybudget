@@ -11,7 +11,7 @@ const Table = (props) =>{
                  <table className= "highlight table-margin">
                      <thead className= "teal lighten-1 white-text">
                          <tr>
-                             <th>Description</th>
+                             <th>Name</th>
                              <th>Category</th>
                              <th>Value</th>
                              <th>Date</th>
