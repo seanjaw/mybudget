@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class AddItem extends Component {
+class EditItem extends Component {
     state = {
         description: '',
         category: '',
@@ -78,4 +78,4 @@ class AddItem extends Component {
     }
 }
 
-export default AddItem;
+export default EditItem;

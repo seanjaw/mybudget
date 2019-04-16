@@ -11,18 +11,23 @@ import NavBar from './nav_bar';
 import '../assets/css/app.scss';
 import BreakdownBar from './breakdown_bar';
 import Notes from './notes'
-import EditModal from './editModal';
+import EditModal from './edit_modal';
 import BudgetSummary from './budget_summary';
 class App extends Component {
     
     state = {
         list: [],
-        editModalOpen: false
+        modalOpen: false
     }
 
     componentDidMount() {
         this.getListData();
-        // this.accumulate();
+    }
+
+    componentDidUpdate(){
+        console.log('component updated')
+        // console.log(this.state)
+        
     }
     getListData() {
         this.setState({
@@ -49,12 +54,13 @@ class App extends Component {
                 list: tempItems
             })
         }
-
-
     }
 
+    // editItem = (something) =>{
+
+    // }
+    
     accumulate = () => {
-        // console.log('list', this.state.list)
         let accumulator = 0;
         this.state.list.map((item) => {
             let parsedInteger = parseInt(item.value);
@@ -84,19 +90,21 @@ class App extends Component {
         })
         return negAccumulator*-1;
     }
-    editModalOpen = () => {
+    openEditModal = () => {
         this.setState({
-           editModalOpen: true,
+           modalOpen: true,
         });
+        console.log('in the edit modal')
     }
 
-    editModalClosed = () => {
+    closeEditModal = () => {
         this.setState({
-            editModalOpen: false
+            modalOpen: false
         });
     }
-
+  
     render() {
+   
 
         const accumulator = this.accumulate();
         return (
@@ -111,7 +119,7 @@ class App extends Component {
                 </div>
                 <div className="row">
                     <div className="col s12 m8 no-padding">
-                        <Table deleteItem={this.deleteItem} list={this.state.list} />
+                        <Table deleteItem={this.deleteItem} openEditModal={this.openEditModal} closeEditModal ={this.closeEditModal} list={this.state.list} />
                     </div>
                     <div className="col s12 m4 no-padding">
                         <AddItem add={this.addItem} />
@@ -120,7 +128,7 @@ class App extends Component {
                 <div>
             </div>
 
-                
+            { this.state.modalOpen ? <EditModal closeModal = {this.closeEditModal}/> : "" }
             </div>
         )
     }
