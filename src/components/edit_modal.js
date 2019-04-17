@@ -5,11 +5,14 @@ import AddItem from './add_item';
 
 class EditModal extends Component {
     componentDidMount(){
-        var instance = M.Modal.init(this.editModalInstance);
-         console.log('modal is mounted', this.state)
+        var instance = M.Modal.init(this.editModalInstance, {
+            opacity:0.5,
+            onCloseStart: this.props.closeModal
+        })
         instance.open();
-    
+        
     }
+   
     render(){
         return (
             <div>
