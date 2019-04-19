@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+
 
 class EditItem extends Component {
-    state = {
-        description: '',
-        category: '',
-        value: '',
-        date: ''
-
-    }
+   
+       state = {
+            description: '',
+            category: '',
+            value: '',
+            date: ''
+    
+        }
+  
+  
     handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log('form submitted', this.state)
         this.props.add(this.state);
         this.resetForm();
     }
@@ -20,21 +23,34 @@ class EditItem extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        // console.log(this.state)
     }
 
     resetForm = () => {
         this.setState({
             description: '',
-            category: '',
+            category: '', 
             value: '',
             date: ''
         });
 
     }
+
+
+    editForm = () =>{
+        this.setState({
+            description: 'description',
+            category: 'rofl',
+            value: 1,
+            date: 'haha'
+        });
+
+    }
+
     render() {
         const { description, category, value, date } = this.state;
+        console.log('row props:', this.props);
         return (
+          
                             <form onSubmit={this.handleSubmit}>
                                 <div className="row form-margins">
                                     <div className="col input-field s10 offset-s1">
@@ -66,11 +82,9 @@ class EditItem extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col s6 center">
-                                        <button onClick={this.resetForm} type="button" className="btn-large waves-effect waves-light btn black">clear</button>
-                                    </div>
-                                    <div className="col s6 center">
-                                        <button className="btn-large waves-effect waves-light btn black">add</button>
+                                   
+                                    <div className="col s12 center">
+                                        <button className="btn-large waves-effect waves-light btn black">edit</button>
                                     </div>
                                 </div>
                             </form>
@@ -78,4 +92,10 @@ class EditItem extends Component {
     }
 }
 
-export default EditItem;
+function mapStatetoProps(state){
+    return {
+        rowinfo: state.row.rowReducer
+    }
+}
+
+export default connect(mapStatetoProps)(EditItem); 

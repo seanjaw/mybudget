@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
-// import EditItem from './edit_item';
-import AddItem from './add_item';
-
+import EditItem from './edit_item';
 
 class EditModal extends Component {
+   
+    
     componentDidMount(){
         var instance = M.Modal.init(this.editModalInstance, {
             opacity:0.5,
             onCloseStart: this.props.closeModal
         })
         instance.open();
-        
     }
    
     render(){
+        
         return (
             <div>
                 <div ref={(element)=>{this.editModalInstance =element}} id="modal1" className= "modal modal-dsplay" >
                     <span className="close" onClick={this.props.closeModal}>&times;</span>
                     <div className="modal-content">
-                        <AddItem/>
+                        <EditItem/>
                     </div>
                 </div>
             </div>

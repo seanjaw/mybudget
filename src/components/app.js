@@ -13,6 +13,8 @@ import BreakdownBar from './breakdown_bar';
 import Notes from './notes'
 import EditModal from './edit_modal';
 import BudgetSummary from './budget_summary';
+import axios from 'axios';
+
 class App extends Component {
     
     state = {
@@ -22,13 +24,12 @@ class App extends Component {
 
     componentDidMount() {
         this.getListData();
+        // console.log('the open modal state',this.state)
     }
 
-    componentDidUpdate(){
-        console.log('component updated')
-        // console.log(this.state)
-        
-    }
+    // componentDidUpdate(){
+    //     console.log('component updated')        
+    // }
     getListData() {
         this.setState({
             list: listData
@@ -56,9 +57,14 @@ class App extends Component {
         }
     }
 
-    // editItem = (something) =>{
 
-    // }
+    editItem = (id) =>{
+        this.state.list.findIndex((item)=>{
+            return item.id === id;
+        });
+
+
+    }
     
     accumulate = () => {
         let accumulator = 0;
@@ -92,9 +98,10 @@ class App extends Component {
     }
     openEditModal = () => {
         this.setState({
-           modalOpen: true,
+           modalOpen: true
         });
         console.log('in the edit modal')
+        // console.log('the open modal state',this.state)
     }
 
     closeEditModal = () => {
@@ -105,7 +112,7 @@ class App extends Component {
   
     render() {
    
-
+    
         const accumulator = this.accumulate();
         return (
             <div className="yellow lighten-5 z-depth-1">
@@ -119,16 +126,16 @@ class App extends Component {
                 </div>
                 <div className="row">
                     <div className="col s12 m8 no-padding">
-                        <Table deleteItem={this.deleteItem} openEditModal={this.openEditModal} closeEditModal ={this.closeEditModal} list={this.state.list} />
+                        <Table editItem= {this.editItem} deleteItem={this.deleteItem} openEditModal={this.openEditModal} list={this.state.list} />
                     </div>
                     <div className="col s12 m4 no-padding">
-                        <AddItem add={this.addItem} />
+                        <AddItem add={this.addItem} editItem={this.editItem}/>
                     </div>
                 </div>
                 <div>
             </div>
 
-            { this.state.modalOpen ? <EditModal closeModal = {this.closeEditModal}/> : "" }
+            { this.state.modalOpen ? <EditModal  closeModal = {this.closeEditModal} /> : "" }
             </div>
         )
     }
