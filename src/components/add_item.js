@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 
 class AddItem extends Component {
+ 
     state = {
-        description: '',
-        category: '',
-        value: '',
-        date: ''
+            description: '',
+            category: '',
+            value: '',
+            date: ''
+    
+        }
+    
 
-    }
     handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log('form submitted', this.state)
         this.props.add(this.state);
         this.resetForm();
     }
@@ -20,7 +21,6 @@ class AddItem extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        // console.log(this.state)
     }
 
     resetForm = () => {
@@ -32,6 +32,7 @@ class AddItem extends Component {
         });
 
     }
+
     render() {
         const { description, category, value, date } = this.state;
         return (
@@ -67,10 +68,10 @@ class AddItem extends Component {
 
                                 <div className="row">
                                     <div className="col s6 center">
-                                        <button onClick={this.resetForm} type="button" className="btn-large waves-effect waves-light btn black">clear</button>
+                                        <button onClick={this.resetForm} type="button" className="btn waves-effect waves-light btn black">clear</button>
                                     </div>
                                     <div className="col s6 center">
-                                        <button className="btn-large waves-effect waves-light btn black">add</button>
+                                        <button className="btn waves-effect waves-light btn black">add</button>
                                     </div>
                                 </div>
                             </form>

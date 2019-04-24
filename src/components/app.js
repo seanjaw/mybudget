@@ -13,6 +13,9 @@ import BreakdownBar from './breakdown_bar';
 import Notes from './notes'
 import EditModal from './edit_modal';
 import BudgetSummary from './budget_summary';
+import {editItem} from '../actions';
+import axios from 'axios';
+
 class App extends Component {
     
     state = {
@@ -24,11 +27,9 @@ class App extends Component {
         this.getListData();
     }
 
-    componentDidUpdate(){
-        console.log('component updated')
-        // console.log(this.state)
-        
-    }
+    // componentDidUpdate(){
+    //     console.log('component updated')        
+    // }
     getListData() {
         this.setState({
             list: listData
@@ -44,9 +45,12 @@ class App extends Component {
 
     deleteItem = (id) => {
         const indexToDelete = this.state.list.findIndex((item) => {
+            console.log("this is id",id)
             return item.id === id;
         });
-
+        
+     
+        console.log("current row ", this.state.list[indexToDelete]);
         if (indexToDelete >= 0) {
             const tempItems = this.state.list.slice()
             tempItems.splice(indexToDelete, 1);
@@ -56,10 +60,6 @@ class App extends Component {
         }
     }
 
-    // editItem = (something) =>{
-
-    // }
-    
     accumulate = () => {
         let accumulator = 0;
         this.state.list.map((item) => {
@@ -92,9 +92,10 @@ class App extends Component {
     }
     openEditModal = () => {
         this.setState({
-           modalOpen: true,
+           modalOpen: true
         });
         console.log('in the edit modal')
+        // console.log('the open modal state',this.state)
     }
 
     closeEditModal = () => {
@@ -105,7 +106,7 @@ class App extends Component {
   
     render() {
    
-
+    
         const accumulator = this.accumulate();
         return (
             <div className="yellow lighten-5 z-depth-1">
@@ -119,16 +120,16 @@ class App extends Component {
                 </div>
                 <div className="row">
                     <div className="col s12 m8 no-padding">
-                        <Table deleteItem={this.deleteItem} openEditModal={this.openEditModal} closeEditModal ={this.closeEditModal} list={this.state.list} />
+                        <Table editItem= {this.editItem} deleteItem={this.deleteItem} openEditModal={this.openEditModal} list={this.state.list} />
                     </div>
                     <div className="col s12 m4 no-padding">
-                        <AddItem add={this.addItem} />
+                        <AddItem add={this.addItem} editItem={this.editItem}/>
                     </div>
                 </div>
                 <div>
             </div>
 
-            { this.state.modalOpen ? <EditModal closeModal = {this.closeEditModal}/> : "" }
+            { this.state.modalOpen ? <EditModal  closeModal = {this.closeEditModal} /> : "" }
             </div>
         )
     }

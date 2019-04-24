@@ -1,46 +1,54 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { editItem } from '../actions';
 
 class EditItem extends Component {
-    state = {
-        description: '',
-        category: '',
-        value: '',
-        date: ''
-
+    
+       state = {
+            description: '',
+            category: '',
+            value: '',
+            date: ''
+    
+        }
+    componentDidMount(){
+        M.updateTextFields()    
     }
     handleSubmit = (event) => {
         event.preventDefault();
-
-        console.log('form submitted', this.state)
-        this.props.add(this.state);
-        this.resetForm();
+        // this.props.edit()
+        // this.resetForm();
     }
 
     handleKeyPress = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
-        // console.log(this.state)
     }
 
-    resetForm = () => {
-        this.setState({
-            description: '',
-            category: '',
-            value: '',
-            date: ''
-        });
+    // resetForm = () => {
+    //     this.setState({
+    //         description: '',
+    //         category: '', 
+    //         value: '',
+    //         date: ''
+    //     });
 
-    }
+    // }
+
     render() {
-        const { description, category, value, date } = this.state;
+        const { description, category, value, date } = this.props.info;
+        console.log(this.state);
+
         return (
+          
                             <form onSubmit={this.handleSubmit}>
                                 <div className="row form-margins">
                                     <div className="col input-field s10 offset-s1">
                                         <i className="material-icons prefix">label</i>
-                                        <input onChange={this.handleKeyPress} name="description" type="text" id="description" value={description} />
+                                        <input onChange={this.handleKeyPress} name="description" type="text" id="description" placeholder ={description} value ={this.state.description}/>
                                         <label htmlFor="description">Description</label>
+
                                     </div>
                                 </div>
                                 <div className="row form-margins">
@@ -66,11 +74,9 @@ class EditItem extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col s6 center">
-                                        <button onClick={this.resetForm} type="button" className="btn-large waves-effect waves-light btn black">clear</button>
-                                    </div>
-                                    <div className="col s6 center">
-                                        <button className="btn-large waves-effect waves-light btn black">add</button>
+                                   
+                                    <div className="col s12 center">
+                                        <button className="btn-large waves-effect waves-light btn black">edit</button>
                                     </div>
                                 </div>
                             </form>
@@ -78,4 +84,14 @@ class EditItem extends Component {
     }
 }
 
-export default EditItem;
+const mapStateToProps = state => {
+	console.log("STATE", state.row)
+  return {
+    info: state.row
+  }
+} 
+
+export default connect(mapStateToProps, {
+  editItem
+})(EditItem);
+
