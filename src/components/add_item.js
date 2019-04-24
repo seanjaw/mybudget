@@ -68,10 +68,10 @@ class AddItem extends Component {
 
                                 <div className="row">
                                     <div className="col s6 center">
-                                        <button onClick={this.resetForm} type="button" className="btn-large waves-effect waves-light btn black">clear</button>
+                                        <button onClick={this.resetForm} type="button" className="btn waves-effect waves-light btn black">clear</button>
                                     </div>
                                     <div className="col s6 center">
-                                        <button className="btn-large waves-effect waves-light btn black">add</button>
+                                        <button className="btn waves-effect waves-light btn black">add</button>
                                     </div>
                                 </div>
                             </form>

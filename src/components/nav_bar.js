@@ -10,7 +10,7 @@ class NavBar extends Component {
             <div>
             <nav className="teal lighten-1">
                 <div className="nav-wrapper">
-                    <a href="#" className="brand-logo">MyBudget</a>
+                    <a href="#" className="brand-logo">WhereIsMyMoney?</a>
                     <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li><a href="sass.html">Overview</a></li>

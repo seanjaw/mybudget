@@ -13,6 +13,7 @@ import BreakdownBar from './breakdown_bar';
 import Notes from './notes'
 import EditModal from './edit_modal';
 import BudgetSummary from './budget_summary';
+import {editItem} from '../actions';
 import axios from 'axios';
 
 class App extends Component {
@@ -24,7 +25,6 @@ class App extends Component {
 
     componentDidMount() {
         this.getListData();
-        // console.log('the open modal state',this.state)
     }
 
     // componentDidUpdate(){
@@ -45,9 +45,12 @@ class App extends Component {
 
     deleteItem = (id) => {
         const indexToDelete = this.state.list.findIndex((item) => {
+            console.log("this is id",id)
             return item.id === id;
         });
-
+        
+     
+        console.log("current row ", this.state.list[indexToDelete]);
         if (indexToDelete >= 0) {
             const tempItems = this.state.list.slice()
             tempItems.splice(indexToDelete, 1);
@@ -57,15 +60,6 @@ class App extends Component {
         }
     }
 
-
-    editItem = (id) =>{
-        this.state.list.findIndex((item)=>{
-            return item.id === id;
-        });
-
-
-    }
-    
     accumulate = () => {
         let accumulator = 0;
         this.state.list.map((item) => {

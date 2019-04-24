@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-
+import { connect } from 'react-redux';
+import { editItem } from '../actions';
 
 class EditItem extends Component {
-   
+    
        state = {
             description: '',
             category: '',
@@ -11,12 +11,13 @@ class EditItem extends Component {
             date: ''
     
         }
-  
-  
+    componentDidMount(){
+        M.updateTextFields()    
+    }
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.add(this.state);
-        this.resetForm();
+        // this.props.edit()
+        // this.resetForm();
     }
 
     handleKeyPress = (event) => {
@@ -25,38 +26,29 @@ class EditItem extends Component {
         });
     }
 
-    resetForm = () => {
-        this.setState({
-            description: '',
-            category: '', 
-            value: '',
-            date: ''
-        });
+    // resetForm = () => {
+    //     this.setState({
+    //         description: '',
+    //         category: '', 
+    //         value: '',
+    //         date: ''
+    //     });
 
-    }
-
-
-    editForm = () =>{
-        this.setState({
-            description: 'description',
-            category: 'rofl',
-            value: 1,
-            date: 'haha'
-        });
-
-    }
+    // }
 
     render() {
-        const { description, category, value, date } = this.state;
-        console.log('row props:', this.props);
+        const { description, category, value, date } = this.props.info;
+        console.log(this.state);
+
         return (
           
                             <form onSubmit={this.handleSubmit}>
                                 <div className="row form-margins">
                                     <div className="col input-field s10 offset-s1">
                                         <i className="material-icons prefix">label</i>
-                                        <input onChange={this.handleKeyPress} name="description" type="text" id="description" value={description} />
+                                        <input onChange={this.handleKeyPress} name="description" type="text" id="description" placeholder ={description} value ={this.state.description}/>
                                         <label htmlFor="description">Description</label>
+
                                     </div>
                                 </div>
                                 <div className="row form-margins">
@@ -92,10 +84,14 @@ class EditItem extends Component {
     }
 }
 
-function mapStatetoProps(state){
-    return {
-        rowinfo: state.row.rowReducer
-    }
-}
+const mapStateToProps = state => {
+	console.log("STATE", state.row)
+  return {
+    info: state.row
+  }
+} 
 
-export default connect(mapStatetoProps)(EditItem); 
+export default connect(mapStateToProps, {
+  editItem
+})(EditItem);
+

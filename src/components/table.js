@@ -1,7 +1,10 @@
 import React from 'react';
 import ListRow from './list_row';
+
+
+
+
 const Table = (props) =>{
-    console.log(props)
     const listRows = props.list.map((item) => {
         return <ListRow edit={props.editItem} delete = {props.deleteItem}  openModal = {props.openEditModal} closeModal = {props.closeEditModal} key={item.id}list={item}/>
      }); 
@@ -28,4 +31,4 @@ const Table = (props) =>{
 
 }
     
-export default Table; 
+export default Table;
