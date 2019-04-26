@@ -13,7 +13,7 @@ import BreakdownBar from './breakdown_bar';
 import Notes from './notes'
 import EditModal from './edit_modal';
 import BudgetSummary from './budget_summary';
-import {editItem} from '../actions';
+// import {editItem} from '../actions';
 import axios from 'axios';
 
 class App extends Component {
@@ -22,19 +22,30 @@ class App extends Component {
         list: [],
         modalOpen: false
     }
+    // async getData(){
+    //     const getrows= await axios.get('/api/data.php?action=readAll');
+    //     console.log('inside async getdata', getrows.data.data)
+    // }
+    async componentDidMount() {
+        const getrows= await axios.get('/api/data.php?action=readAll');
+        console.log(getrows)
+        this.setState({
+            list: getrows.data.data 
+        });
 
-    componentDidMount() {
-        this.getListData();
+        // console.log(this.state)
+        // this.getListData();
+        // this.getData();
     }
 
     // componentDidUpdate(){
     //     console.log('component updated')        
     // }
-    getListData() {
-        this.setState({
-            list: listData
-        })
-    }
+    // getListData() {
+    //     this.setState({
+    //         list: listData
+    //     })
+    // }
 
     addItem = (newItem) => {
         newItem.id = randomString();
