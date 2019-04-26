@@ -15,7 +15,7 @@ $output = [
 
 switch($_GET['action']){
 	case 'readAll':
-		require('./dataApi/read.php');
+		require('./phpApi/read.php');
 		break;
 	case 'insert':
 		require('./dataApi/insert.php');
