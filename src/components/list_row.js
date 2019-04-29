@@ -21,7 +21,7 @@ const ListRow = (props) => {
 }
 
 const mapStateToProps = state => {
-	console.log("STATE", state.row)
+	// console.log("STATE", state.row)
   return {
     info: state.row
   }
