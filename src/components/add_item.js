@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 class AddItem extends Component {
  
     state = {
@@ -11,8 +11,25 @@ class AddItem extends Component {
         }
     
 
-    handleSubmit = (event) => {
+    // async componentDidMount(){
+    //     console.log('component mounted')
+    //     const addRow = await axios.post('/api/data.php?action=create',{
+    //         description: this.state.description,
+    //         category: this.state.category,
+    //         value: this.state.value,
+    //         date: this.state.date 
+    //     });
+    //     console.log('component did mount', addRow)
+    // }
+    handleSubmit = async (event) => {
         event.preventDefault();
+            const addRow = await axios.post('/api/data.php?action=insert',{
+            description: this.state.description,
+            category: this.state.category,
+            value: this.state.value,
+            date: this.state.date 
+        });
+        console.log('this is addrow', addRow)
         this.props.add(this.state);
         this.resetForm();
     }
