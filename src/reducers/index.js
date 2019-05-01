@@ -1,6 +1,6 @@
 import { combineReducers} from 'redux';
 import rowReducer from './row_reducer';
- 
+import editReducer from './edit_reducer'; 
 //State:
 
 // const exampleState= {
@@ -14,7 +14,8 @@ import rowReducer from './row_reducer';
 
 
 const rootReducer = combineReducers({
-    row: rowReducer
+    row: rowReducer,
+    edit: editReducer
 });  
 
 

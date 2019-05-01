@@ -5,7 +5,7 @@ import { editItem } from '../actions';
 const ListRow = (props) => {
    const {description, value, id, category, date } = props.list
    const editItem = () => {
-    props.editItem(id);
+    props.editItem({description, value, id, category, date } );
     }
     return(
         <tr className="yellow lighten-5">
@@ -13,7 +13,7 @@ const ListRow = (props) => {
             <td>{category}</td>
             <td>{value}</td>
             <td>{date}</td>
-            <td><a className="btn-floating btn waves-effect waves-light black"><i className="material-icons" onClick={()=>{editItem(id); props.openModal();}} >edit</i></a></td>
+            <td><a className="btn-floating btn waves-effect waves-light black"><i className="material-icons" onClick={()=>{editItem(); props.openModal();}} >edit</i></a></td>
             <td><a className="btn-floating btn waves-effect waves-light black"><i className="material-icons" onClick={()=>{props.delete(id)}} >delete</i></a></td>
         </tr>
         
@@ -23,7 +23,7 @@ const ListRow = (props) => {
 const mapStateToProps = state => {
 	// console.log("STATE", state.row)
   return {
-    info: state.row
+    info: state.edit
   }
 } 
 

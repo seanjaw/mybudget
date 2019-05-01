@@ -15,6 +15,7 @@ import EditModal from './edit_modal';
 import BudgetSummary from './budget_summary';
 // import {editItem} from '../actions';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class App extends Component {
     
@@ -151,4 +152,13 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    info: state.edit
+  }
+} 
+// export default connect(mapStateToProps, {
+//     editItem
+//   })(App);
+
+export default App; 
