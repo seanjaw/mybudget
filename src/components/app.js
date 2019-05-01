@@ -28,7 +28,7 @@ class App extends Component {
     // }
     async componentDidMount() {
         const getrows= await axios.get('/api/data.php?action=readAll');
-        console.log(getrows)
+        // console.log(getrows)
         this.setState({
             list: getrows.data.data 
         });
@@ -54,12 +54,17 @@ class App extends Component {
         });
     }
 
-    deleteItem = (id) => {
+    deleteItem = async (id) => {
         const indexToDelete = this.state.list.findIndex((item) => {
-            console.log("this is id",id)
+            console.log("this is index to delete",id)
             return item.id === id;
         });
-        
+        console.log(this.state);
+        console.log(indexToDelete);
+        const deleteRow =await axios.post('/api/data.php?action=delete',{
+            id: this.state.list[indexToDelete].id
+        });
+        console.log(deleteRow)
      
         console.log("current row ", this.state.list[indexToDelete]);
         if (indexToDelete >= 0) {
