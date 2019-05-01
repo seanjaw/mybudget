@@ -24,7 +24,7 @@ switch($_GET['action']){
 		require('./phpApi/delete.php');
 		break;
 	case 'update':
-		require('./dataApi/update.php');
+		require('./phpApi/update.php');
 		break;
 }
 
