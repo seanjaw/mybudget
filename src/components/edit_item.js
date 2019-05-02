@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editItem } from '../actions';
-
+import axios from 'axios';
 class EditItem extends Component {
     
        state = {
@@ -12,12 +12,26 @@ class EditItem extends Component {
     
         }
     componentDidMount(){
+        console.log("The thing ", this.props);
         M.updateTextFields()    
     }
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        // this.props.edit()
-        // this.resetForm();
+       
+        console.log('this was clicked')
+        const editRow = await axios.post('/api/data.php?action=update',{
+            id: this.props.editID,
+            description: this.state.description,
+            category: this.state.category,
+            value: this.state.value,
+            date: this.state.date 
+        })
+        console.log(editRow)
+        this.props.refreshAfterEdit();
+        this.props.closeModal();
+        // console.log(this.state);
+        //set state to new state 
+
     }
 
     handleKeyPress = (event) => {
@@ -25,6 +39,7 @@ class EditItem extends Component {
             [event.target.name]: event.target.value
         });
     }
+
 
     // resetForm = () => {
     //     this.setState({
@@ -38,7 +53,8 @@ class EditItem extends Component {
 
     render() {
         const { description, category, value, date } = this.props.info;
-        console.log(this.state);
+        console.log('this is state', this.state);
+        console.log('this is props', this.props.info)
 
         return (
           
@@ -54,21 +70,21 @@ class EditItem extends Component {
                                 <div className="row form-margins">
                                 <div className="col input-field s10 offset-s1">
                                         <i className="material-icons prefix">list</i>
-                                        <input onChange={this.handleKeyPress} name="category" type="text" id="category" value={category} />
+                                        <input onChange={this.handleKeyPress} name="category" type="text" id="category" placeholder ={category} value={this.state.category} />
                                         <label htmlFor="description">Category</label>
                                     </div>
                                 </div>
                                 <div className="row form-margins">
                                 <div className="col input-field s10 offset-s1">
                                         <i className="material-icons prefix">attach_money</i>
-                                        <input onChange={this.handleKeyPress} name="value" type="number" id="value" value={value} />
+                                        <input onChange={this.handleKeyPress} name="value" type="number" id="value" placeholder ={value} value={this.state.value} />
                                         <label htmlFor="value">Value</label>
                                     </div>
                                 </div>
                                 <div className="row form-margins">
                                 <div className="col input-field s10 offset-s1">
                                         <i className="material-icons prefix">date_range</i>
-                                        <input onChange={this.handleKeyPress} name="date" type="text" id="date" value={date} />
+                                        <input onChange={this.handleKeyPress} name="date" type="text" id="date" placeholder ={date} value={this.state.date} />
                                         <label htmlFor="description">Date</label>
                                     </div>
                                 </div>
@@ -85,9 +101,9 @@ class EditItem extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log("STATE", state.row)
+	console.log("STATE", state.edit)
   return {
-    info: state.row
+    info: state.edit
   }
 } 
 

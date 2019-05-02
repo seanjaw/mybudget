@@ -15,6 +15,7 @@ import EditModal from './edit_modal';
 import BudgetSummary from './budget_summary';
 // import {editItem} from '../actions';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class App extends Component {
     
@@ -52,6 +53,13 @@ class App extends Component {
         this.setState({
             list: [...this.state.list, newItem]
         });
+    }
+
+    editItem = async () =>{
+        const getrows= await axios.get('/api/data.php?action=readAll')
+        this.setState({
+            list: getrows.data.data
+        })
     }
 
     deleteItem = async (id) => {
@@ -106,9 +114,10 @@ class App extends Component {
         })
         return negAccumulator*-1;
     }
-    openEditModal = () => {
+    openEditModal = (id) => {
         this.setState({
-           modalOpen: true
+           modalOpen: true,
+           editID: id
         });
         console.log('in the edit modal')
         // console.log('the open modal state',this.state)
@@ -139,16 +148,17 @@ class App extends Component {
                         <Table editItem= {this.editItem} deleteItem={this.deleteItem} openEditModal={this.openEditModal} list={this.state.list} />
                     </div>
                     <div className="col s12 m4 no-padding">
-                        <AddItem add={this.addItem} editItem={this.editItem}/>
+                        <AddItem add={this.addItem}/>
                     </div>
                 </div>
                 <div>
             </div>
 
-            { this.state.modalOpen ? <EditModal  closeModal = {this.closeEditModal} /> : "" }
+            { this.state.modalOpen ? <EditModal editItem={this.editItem} editID={this.state.editID} closeModal = {this.closeEditModal} /> : "" }
             </div>
         )
     }
 }
 
-export default App;
+
+export default App; 
