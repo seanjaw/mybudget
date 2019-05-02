@@ -55,6 +55,13 @@ class App extends Component {
         });
     }
 
+    editItem = async () =>{
+        const getrows= await axios.get('/api/data.php?action=readAll')
+        this.setState({
+            list: getrows.data.data
+        })
+    }
+
     deleteItem = async (id) => {
         const indexToDelete = this.state.list.findIndex((item) => {
             console.log("this is index to delete",id)
@@ -107,9 +114,10 @@ class App extends Component {
         })
         return negAccumulator*-1;
     }
-    openEditModal = () => {
+    openEditModal = (id) => {
         this.setState({
-           modalOpen: true
+           modalOpen: true,
+           editID: id
         });
         console.log('in the edit modal')
         // console.log('the open modal state',this.state)
@@ -140,25 +148,17 @@ class App extends Component {
                         <Table editItem= {this.editItem} deleteItem={this.deleteItem} openEditModal={this.openEditModal} list={this.state.list} />
                     </div>
                     <div className="col s12 m4 no-padding">
-                        <AddItem add={this.addItem} editItem={this.editItem}/>
+                        <AddItem add={this.addItem}/>
                     </div>
                 </div>
                 <div>
             </div>
 
-            { this.state.modalOpen ? <EditModal  closeModal = {this.closeEditModal} /> : "" }
+            { this.state.modalOpen ? <EditModal editItem={this.editItem} editID={this.state.editID} closeModal = {this.closeEditModal} /> : "" }
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-  return {
-    info: state.edit
-  }
-} 
-// export default connect(mapStateToProps, {
-//     editItem
-//   })(App);
 
 export default App; 

@@ -12,22 +12,26 @@ class EditItem extends Component {
     
         }
     componentDidMount(){
+        console.log("The thing ", this.props);
         M.updateTextFields()    
     }
     handleSubmit = async (event) => {
         event.preventDefault();
        
-        // this.resetForm();
         console.log('this was clicked')
-        const editRow = await axios.post('/api/data.php?action=insert',{
-            // id: this.state.id,
+        const editRow = await axios.post('/api/data.php?action=update',{
+            id: this.props.editID,
             description: this.state.description,
             category: this.state.category,
             value: this.state.value,
             date: this.state.date 
         })
         console.log(editRow)
-        // this.props.edit()
+        this.props.refreshAfterEdit();
+        this.props.closeModal();
+        // console.log(this.state);
+        //set state to new state 
+
     }
 
     handleKeyPress = (event) => {
