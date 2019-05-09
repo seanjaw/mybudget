@@ -6,11 +6,13 @@ class AddItem extends Component {
             description: '',
             category: '',
             value: '',
-            date: ''
-    
+            date: '',
+            descriptionError:''
         }
     
-
+    // setIsValid(isValid) {
+    //     this.setState({ isValid: isValid })
+    // }
     // async componentDidMount(){
     //     console.log('component mounted')
     //     const addRow = await axios.post('/api/data.php?action=create',{
@@ -21,16 +23,27 @@ class AddItem extends Component {
     //     });
     //     console.log('component did mount', addRow)
     // }
+
+
+
     handleSubmit = async (event) => {
         event.preventDefault();
+        const isValid = this.validate();
+
+        if (isValid) {
+           
             const addRow = await axios.post('/api/data.php?action=insert',{
-            description: this.state.description,
-            category: this.state.category,
-            value: this.state.value,
-            date: this.state.date 
-        });
-        console.log('this is addrow', addRow)
-        this.props.add(this.state);
+                description: this.state.description,
+                category: this.state.category,
+                value: this.state.value,
+                date: this.state.date 
+            });
+            console.log('this is addrow', addRow)
+            this.props.add(this.state);
+        }
+        else{
+            console.log(this.state)
+        }
         this.resetForm();
     }
 
@@ -39,7 +52,22 @@ class AddItem extends Component {
             [event.target.name]: event.target.value
         });
     }
+    validate = () =>{
+        console.log('in the validate function')
+        let descriptionError='';
+        if (!this.state.description.includes('@')){
+            console.log('it did not have the @')
+            descriptionError='invalid description';
+            console.log('current state', this.state)
+        }
 
+        if (descriptionError){
+            this.setState({descriptionError:descriptionError})
+            console.log('this is new descriptionerror state', this.state)
+            return false;
+        }
+        return true;
+    }
     resetForm = () => {
         this.setState({
             description: '',
@@ -61,6 +89,7 @@ class AddItem extends Component {
                                         <label htmlFor="description">Description</label>
                                     </div>
                                 </div>
+                                <div>{this.state.descriptionError}</div>
                                 <div className="row form-margins">
                                 <div className="col input-field s10 offset-s1">
                                         <i className="material-icons prefix">list</i>
