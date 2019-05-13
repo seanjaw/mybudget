@@ -15,16 +15,16 @@ $output = [
 
 switch($_GET['action']){
 	case 'readAll':
-		require('./phpApi/read.php');
+		require('./items/read.php');
 		break;
 	case 'insert':
-		require('./phpApi/create.php');
+		require('./items/create.php');
 		break;
 	case 'delete':
-		require('./phpApi/delete.php');
+		require('./items/delete.php');
 		break;
 	case 'update':
-		require('./phpApi/update.php');
+		require('./items/update.php');
 		break;
 }
 
