@@ -87,8 +87,8 @@ class App extends Component {
     accumulate = () => {
         let accumulator = 0;
         this.state.list.map((item) => {
-            let parsedInteger = parseInt(item.value);
-            accumulator += parsedInteger;
+            let parsedFloat = parseFloat(item.value);
+            accumulator += parsedFloat;
         });
         return accumulator
     }
@@ -96,9 +96,9 @@ class App extends Component {
     incomeAccumulate = () =>{
         let posAccumulator = 0;
         this.state.list.map((item)=>{  
-            let parsedInteger = parseInt(item.value);
-            if (parsedInteger > 0){
-                posAccumulator+=parsedInteger;
+            let parsedFloat = parseFloat(item.value);
+            if (parsedFloat > 0){
+                posAccumulator+=parsedFloat;
             } 
         })
         return posAccumulator;
@@ -107,9 +107,9 @@ class App extends Component {
     expenseAccumulate = () =>{
         let negAccumulator = 0;
         this.state.list.map((item)=>{  
-            let parsedInteger = parseInt(item.value);
-            if (parsedInteger < 0){
-                negAccumulator+=parsedInteger;
+            let parsedFloat = parseFloat(item.value);
+            if (parsedFloat < 0){
+                negAccumulator+=parsedFloat;
             }
         })
         return negAccumulator*-1;
@@ -135,19 +135,21 @@ class App extends Component {
         const accumulator = this.accumulate();
         return (
             <div className="yellow lighten-5 z-depth-1">
-                <NavBar />
+                {/* <NavBar />
                 <div className="row remove-margin">
                     <div className="col s12 m8 no-padding yellow lighten-5 making-height">
                         <Notes/>
                         <BudgetSummary accumulator={accumulator}/>
                     </div>
                     <BreakdownBar posAccumulator={this.incomeAccumulate()} negAccumulator={this.expenseAccumulate()} />
-                </div>
+                </div> */}
                 <div className="row">
                     <div className="col s12 m8 no-padding">
                         <Table editItem= {this.editItem} deleteItem={this.deleteItem} openEditModal={this.openEditModal} list={this.state.list} />
                     </div>
                     <div className="col s12 m4 no-padding">
+                        <BreakdownBar posAccumulator={this.incomeAccumulate()} negAccumulator={this.expenseAccumulate()} />
+
                         <AddItem add={this.addItem}/>
                     </div>
                 </div>

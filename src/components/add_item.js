@@ -76,11 +76,13 @@ class AddItem extends Component {
             }
         }
         if(this.state.value !== ''){
-            if (this.findNumberOfDecimalPlaces(this.state.value)!= 0 && this.findNumberOfDecimalPlaces(this.state.value)!= 2){
-                console.log('it aint decimal mate')
-                valueError = 'must be whole number or contain 2 decimals';
+            // if (this.findNumberOfDecimalPlaces(this.state.value)!= 0 && this.findNumberOfDecimalPlaces(this.state.value)!= 2){
+            //     console.log('it aint decimal mate')
+            //     valueError = 'must be whole number or contain 2 decimals';
+            // }
+            if (!this.validateDecimal(this.state.value)){
+                valueError = 'must contain two decimal places';
             }
-    
         }
         if(this.state.date!==''){
             if (!this.validateDate(this.state.date)){
@@ -112,12 +114,17 @@ class AddItem extends Component {
         this.setState({descriptionError,categoryError, valueError, dateError, formError});
 
     }
-    findNumberOfDecimalPlaces = (value) => {
-        let numericValue = parseFloat(value);
-        if (Math.floor(numericValue) !== numericValue)
-        return numericValue.toString().split(".")[1].length || 0;
-    return 0;
+    // findNumberOfDecimalPlaces = (value) => {
+    //     let numericValue = parseFloat(value);
+    //     if (Math.floor(numericValue) !== numericValue)
+    //     return numericValue.toString().split(".")[1].length || 0;
+    // return 0;
 
+    // }
+    validateDecimal = (ele) => {
+        let numericValue = parseFloat(ele);
+        var regex = /(?:\d*\.\d{1,2}|\d+)$/;
+        return regex.test(numericValue);
     }
     validateDate = (date) =>{
         var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;

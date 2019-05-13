@@ -1,4 +1,6 @@
-
+body{
+    overflow: visible;
+}
 h1{
     margin-top: 0;
     color: rgb(212, 130, 130);
@@ -128,6 +130,9 @@ tbody > tr> td {
 
 
 /*form styling */
+.modal{
+    max-height:none;
+}
 
 .errorFont{
     font-size: 0.7em;

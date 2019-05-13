@@ -6,7 +6,7 @@ import React from 'react';
 const BreakdownBar = (props) =>{
     
     return(
-        <div className="col s12 m4 no-padding add-vertical-line">
+        <div className="col s12 m12 no-padding">
         <div className= "yellow lighten-5 making-height valign-wrapper">
             <div className="col s12 breakdown-bar-font white-text">
                 <div className="col s10 offset-s1 green breakdown-bar-margin z-depth-1">
