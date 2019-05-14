@@ -85,19 +85,33 @@ h1{
 
 /* table styling */
 
-tbody > tr> td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 50px;
-}
+// tbody > tr> td {
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     max-width: 50px;
+// }
 
 /*budget sunmary styling*/
+
+tbody > tr > td:nth-child(3){
+ text-align: right;
+}
+
+
 .budget-text-styling{
     margin: auto;
     text-align: left;
 }
 
+.table-overflow{
+    overflow-x: auto;
+}
+
+/* operation buttons spacing */
+.operation-button-margin{
+    margin-right: 7px;
+}
 
 /*modal styling*/
 .close{

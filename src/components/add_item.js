@@ -122,8 +122,13 @@ class AddItem extends Component {
 
     // }
     validateDecimal = (ele) => {
+        console.log('in validate decimal')
+        console.log('this is ele', ele)
         let numericValue = parseFloat(ele);
-        var regex = /(?:\d*\.\d{1,2}|\d+)$/;
+        console.log('this is numervalue', numericValue)
+        // var regex = /(?:\d*\.\d{1,2}|\d+)$/;
+        var regex = /^\d+\.\d{2}$/;
+        console.log('this is regex test', regex.test(numericValue))
         return regex.test(numericValue);
     }
     validateDate = (date) =>{

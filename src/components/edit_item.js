@@ -99,7 +99,9 @@ class EditItem extends Component {
     // }
     validateDecimal = (ele) => {
         let numericValue = parseFloat(ele);
-        var regex = /(?:\d*\.\d{1,2}|\d+)$/;
+        // var regex = /(?:\d*\.\d{1,2}|\d+)$/;
+        var regex = /^\d+\.\d{2}$/;
+
         return regex.test(numericValue);
     }
 

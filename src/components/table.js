@@ -18,8 +18,8 @@ const Table = (props) =>{
                              <th>Category</th>
                              <th>Value</th>
                              <th>Date</th>
-                             <th>Edit</th>
-                             <th>Delete</th>
+                             <th>Operations</th>
+                
                          </tr>
                      </thead>
                      <tbody>
