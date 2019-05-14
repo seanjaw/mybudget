@@ -147,7 +147,7 @@ class App extends Component {
                 <h2>WhereIsMyMoney?</h2>
                 </div> */}
                 <div className="row">
-                    <div className="col s12 m8 no-padding">
+                    <div className="col s12 m8 no-padding table-overflow">
                         <h3>WhereIsMyMoney?</h3>
                         <Table editItem= {this.editItem} deleteItem={this.deleteItem} openEditModal={this.openEditModal} list={this.state.list} />
                     </div>
