@@ -1,0 +1,163 @@
+body{
+    overflow: visible;
+}
+h1{
+    margin-top: 0;
+    color: rgb(212, 130, 130);
+}
+
+.remove-padding{
+    padding: 0;
+}
+
+.form-margins{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.making-height{
+    height:15vh;
+}
+
+.remove-margin{
+    margin-bottom:0;
+}
+
+.add-vertical-line{
+    border-left: solid 1px rgb(199, 198, 198);
+}
+
+
+/*breakdown bar styling*/
+.breakdown-bar-font{
+    font-size: 18px;
+}
+
+.breakdown-bar-margin{
+    margin-bottom: 10px;
+}
+
+
+/* speech bubble styling*/
+.speech-bubble {
+	position: relative;
+	background: #00aabb;
+	border-radius: .4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-left-color: #00aabb;
+	border-right: 0;
+	margin-top: -20px;
+	margin-right: -20px;
+}
+
+.speech-bubble-size{
+    height:80px;
+    width: 180px;
+}
+
+.text-bottom{
+    position: absolute;
+    bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+.accumulation-styling{
+    font-size: 19px;
+    position: absolute;
+    bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+/* table styling */
+
+// tbody > tr> td {
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     max-width: 50px;
+// }
+
+/*budget sunmary styling*/
+
+tbody > tr > td:nth-child(3){
+ text-align: right;
+}
+
+
+.budget-text-styling{
+    margin: auto;
+    text-align: left;
+}
+
+.table-overflow{
+    overflow-x: auto;
+}
+
+/* operation buttons spacing */
+.operation-button-margin{
+    margin-right: 7px;
+}
+
+/*modal styling*/
+.close{
+    color: #aaaaaa;
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 5px;
+    position: absolute;
+    right: 0;
+}
+
+.modal-display{
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #fafafa;
+    padding: 0;
+    width: 55%;
+    margin: auto;
+    border-radius: 2px;
+    z-index: 100;
+}
+
+
+#modal1{
+    // display:none
+}
+
+
+/*form styling */
+.modal{
+    max-height:none;
+}
+
+.errorFont{
+    font-size: 0.7em;
+    padding-left: 42px;
+    margin-left: 9%;
+    color:red;
+}
+
+.formErrorFont{
+    font-size: 0.7em;
+    text-align: center;
+    color: red;
+    padding-bottom: 10px;
+}

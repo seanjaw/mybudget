@@ -1,19 +1,25 @@
 import React from 'react';
-import ListRow from './list_row'
+import ListRow from './list_row';
+
+
 
 
 const Table = (props) =>{
-    const listRows = props.list.map((list) => {
-        return <ListRow delete = {props.deleteItem} key={list.id}list={list}/>
-     });
+    const listRows = props.list.map((item) => {
+        return <ListRow edit={props.editItem} delete = {props.deleteItem}  openDeleteModal = {props.openDeleteModal} openModal = {props.openEditModal} closeModal = {props.closeEditModal} key={item.id}list={item}/>
+     }); 
+    
      return (
          
-                 <table>
-                     <thead>
+                 <table className= "highlight table-margin">
+                     <thead className= "teal lighten-1 white-text">
                          <tr>
-                             <th>item</th>
-                             <th>value</th>
-                             <th>actions</th>
+                             <th>Name</th>
+                             <th>Category</th>
+                             <th>Value</th>
+                             <th>Date</th>
+                             <th>Operations</th>
+                
                          </tr>
                      </thead>
                      <tbody>
@@ -25,6 +31,4 @@ const Table = (props) =>{
 
 }
     
-
-    
-export default Table; 
+export default Table;
