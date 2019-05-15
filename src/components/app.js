@@ -37,6 +37,7 @@ class App extends Component {
         this.setState({
             list: [...this.state.list, newItem]
         });
+        console.log('submitted add item', this.state.list)
     }
 
     editItem = async () =>{
