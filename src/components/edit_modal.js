@@ -19,7 +19,7 @@ class EditModal extends Component {
                 <div ref={(element)=>{this.editModalInstance =element}} id="modal1" className= "modal modal-dsplay" >
                     <span className="close" onClick={this.props.closeModal}>&times;</span>
                     <div className="modal-content">
-                        <EditItem refreshAfterEdit ={this.props.editItem} editID={this.props.editID} closeModal={this.props.closeModal}/>
+                        <EditItem refreshAfterEdit ={this.props.editItem} closeModal={this.props.closeModal}/>
                     </div>
                 </div>
             </div>

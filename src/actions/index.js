@@ -6,7 +6,13 @@
     }
  }
 
+export function deleteItem(item){
 
+    return {
+        type: 'DELETE_STUDENT_INFO',
+        payload: item
+    }
+}
  
 
  

@@ -5,48 +5,32 @@ import 'material-icons/iconfont/material-icons.scss';
 import React, { Component } from 'react';
 import Table from './table';
 import AddItem from './add_item';
-import listData from '../dummydata/get_total';
 import { randomString } from '../helpers';
 import NavBar from './nav_bar';
 import '../assets/css/app.scss';
 import BreakdownBar from './breakdown_bar';
 import Notes from './notes'
 import EditModal from './edit_modal';
+import DeleteModal from './delete_modal';
 import BudgetSummary from './budget_summary';
-// import {editItem} from '../actions';
 import axios from 'axios';
-import {connect} from 'react-redux';
 
 class App extends Component {
     
     state = {
         list: [],
-        modalOpen: false
+        modalOpen: false,
+        deleteModalOpen:false
     }
-    // async getData(){
-    //     const getrows= await axios.get('/api/data.php?action=readAll');
-    //     console.log('inside async getdata', getrows.data.data)
-    // }
+    
     async componentDidMount() {
         const getrows= await axios.get('/api/data.php?action=readAll');
         // console.log(getrows)
         this.setState({
             list: getrows.data.data 
         });
-
-        // console.log(this.state)
-        // this.getListData();
-        // this.getData();
     }
 
-    // componentDidUpdate(){
-    //     console.log('component updated')        
-    // }
-    // getListData() {
-    //     this.setState({
-    //         list: listData
-    //     })
-    // }
 
     addItem = (newItem) => {
         newItem.id = randomString();
@@ -101,7 +85,7 @@ class App extends Component {
                 posAccumulator+=parsedFloat;
             } 
         })
-        return posAccumulator;
+        return posAccumulator.toFixed(2);
     }
 
     expenseAccumulate = () =>{
@@ -112,7 +96,8 @@ class App extends Component {
                 negAccumulator+=parsedFloat;
             }
         })
-        return negAccumulator*-1;
+        negAccumulator= negAccumulator*-1
+        return negAccumulator.toFixed(2);
     }
     openEditModal = (id) => {
         this.setState({
@@ -120,7 +105,7 @@ class App extends Component {
            editID: id
         });
         console.log('in the edit modal')
-        // console.log('the open modal state',this.state)
+
     }
 
     closeEditModal = () => {
@@ -128,6 +113,26 @@ class App extends Component {
             modalOpen: false
         });
     }
+
+    openDeleteModal = (id) => {
+      
+        this.setState({
+           deleteModalOpen: true,
+           deleteID: id
+        });
+        console.log('this is state after delete modal is opened', this.state)
+        console.log('in the delete modal')
+        // console.log('the open modal state',this.state)
+    }
+
+    closeDeleteModal = () => {
+        this.setState({
+            deleteModalOpen: false
+        });
+    }
+
+
+    
   
     render() {
    
@@ -149,7 +154,7 @@ class App extends Component {
                 <div className="row">
                     <div className="col s12 m8 no-padding table-overflow">
                         <h3>WhereIsMyMoney?</h3>
-                        <Table editItem= {this.editItem} deleteItem={this.deleteItem} openEditModal={this.openEditModal} list={this.state.list} />
+                        <Table editItem= {this.editItem} openDeleteModal={this.openDeleteModal} openEditModal={this.openEditModal} list={this.state.list} />
                     </div>
                     <div className="col s12 m4 no-padding">
                         <BreakdownBar posAccumulator={this.incomeAccumulate()} negAccumulator={this.expenseAccumulate()} />
@@ -160,7 +165,8 @@ class App extends Component {
                 <div>
             </div>
 
-            { this.state.modalOpen ? <EditModal editItem={this.editItem} editID={this.state.editID} closeModal = {this.closeEditModal} /> : "" }
+            { this.state.modalOpen ? <EditModal editItem={this.editItem} closeModal = {this.closeEditModal} /> : "" }
+            { this.state.deleteModalOpen ? <DeleteModal deleteItem={this.deleteItem} closeDeleteModal = {this.closeDeleteModal}/> : "" }
             </div>
         )
     }

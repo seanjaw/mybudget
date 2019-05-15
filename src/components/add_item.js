@@ -86,7 +86,7 @@ class AddItem extends Component {
         }
         if(this.state.date!==''){
             if (!this.validateDate(this.state.date)){
-                dateError = 'must be in mm/dd/yyyy format'
+                dateError = 'must be in mm/dd/yyyy and between years 1900 and 2099'
             }
         }
        
@@ -122,13 +122,8 @@ class AddItem extends Component {
 
     // }
     validateDecimal = (ele) => {
-        console.log('in validate decimal')
-        console.log('this is ele', ele)
         let numericValue = parseFloat(ele);
-        console.log('this is numervalue', numericValue)
-        // var regex = /(?:\d*\.\d{1,2}|\d+)$/;
-        var regex = /^\d+\.\d{2}$/;
-        console.log('this is regex test', regex.test(numericValue))
+        var regex=  /^-?\d+(\.\d{1,2})?$/;
         return regex.test(numericValue);
     }
     validateDate = (date) =>{

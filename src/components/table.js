@@ -6,7 +6,7 @@ import ListRow from './list_row';
 
 const Table = (props) =>{
     const listRows = props.list.map((item) => {
-        return <ListRow edit={props.editItem} delete = {props.deleteItem}  openModal = {props.openEditModal} closeModal = {props.closeEditModal} key={item.id}list={item}/>
+        return <ListRow edit={props.editItem} delete = {props.deleteItem}  openDeleteModal = {props.openDeleteModal} openModal = {props.openEditModal} closeModal = {props.closeEditModal} key={item.id}list={item}/>
      }); 
     
      return (
