@@ -13,6 +13,7 @@ class EditItem extends Component {
         }
     componentDidMount(){
         this.setState(this.props.info);
+        console.log('this is props.info', this.props.info)
         M.updateTextFields()    
     }
     handleSubmit = async (event) => {
@@ -77,7 +78,7 @@ class EditItem extends Component {
         }
         if(this.state.date!==''){
             if (!this.validateDate(this.state.date)){
-                dateError = 'must be in mm/dd/yyyy format'
+                dateError = 'must be in mm/dd/yyyy and between years 1900 and 2099'
             }
         }
        
@@ -90,18 +91,10 @@ class EditItem extends Component {
     
         return true;
     }
-    // findNumberOfDecimalPlaces = (value) => {
-    //     let numericValue = parseFloat(value);
-    //     if (Math.floor(numericValue) !== numericValue)
-    //     return numericValue.toString().split(".")[1].length || 0;
-    // return 0;
-
-    // }
+  
     validateDecimal = (ele) => {
-        let numericValue = parseFloat(ele);
-        // var regex = /(?:\d*\.\d{1,2}|\d+)$/;
-        var regex = /^\d+\.\d{2}$/;
-
+        let numericValue = parseFloat(ele).toFixed(2);
+        var regex=  /^-?\d+(\.\d{1,2})?$/;
         return regex.test(numericValue);
     }
 
