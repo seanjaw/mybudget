@@ -21,7 +21,8 @@ class EditItem extends Component {
         const isValid = this.validate();
         if (isValid){
             const editRow = await axios.post('/api/data.php?action=update',{
-                id: this.props.editID,
+                // id: this.props.editID,
+                id: this.state.id,
                 description: this.state.description,
                 category: this.state.category,
                 value: this.state.value,
@@ -37,9 +38,11 @@ class EditItem extends Component {
     }
 
     handleKeyPress = (event) => {
+
         this.setState({
             [event.target.name]: event.target.value
         });
+        console.log('in the handling key press', this.state)
     }
     validate = () =>{
         console.log('in the validate function')
