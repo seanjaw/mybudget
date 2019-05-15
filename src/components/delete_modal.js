@@ -42,7 +42,7 @@ class DeleteModal extends Component {
                                         <button onClick={this.resetForm} type="button" className=" btn-small btn waves-effect waves-light btn black" onClick={()=>{this.props.closeDeleteModal()}}>No</button>
                                     </div>
                                     <div className="col s6 center">
-                                        <button className="btn-small btn waves-effect waves-light btn black" onClick={()=>{this.props.deleteItem(this.props.info.id)}}>Yes</button>
+                                        <button className="btn-small btn waves-effect waves-light btn black" onClick={()=>{this.props.closeDeleteModal();this.props.deleteItem(this.props.info.id)}}>Yes</button>
                                     </div>
                                 </div>
                     </div>

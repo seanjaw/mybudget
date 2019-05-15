@@ -96,7 +96,7 @@ class EditItem extends Component {
     }
   
     validateDecimal = (ele) => {
-        let numericValue = parseFloat(ele).toFixed(2);
+        let numericValue = parseFloat(ele);
         var regex=  /^-?\d+(\.\d{1,2})?$/;
         return regex.test(numericValue);
     }
