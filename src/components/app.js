@@ -14,13 +14,15 @@ import EditModal from './edit_modal';
 import DeleteModal from './delete_modal';
 import BudgetSummary from './budget_summary';
 import axios from 'axios';
+import WarningModal from './warning_modal';
 
 class App extends Component {
     
     state = {
         list: [],
         modalOpen: false,
-        deleteModalOpen:false
+        deleteModalOpen:false,
+        warningModalOpen: true 
     }
     
     async componentDidMount() {
@@ -131,7 +133,11 @@ class App extends Component {
             deleteModalOpen: false
         });
     }
-
+    closeWarningModal = () => {
+        this.setState({
+            warningModalOpen: false
+        });
+    }
 
     
   
@@ -168,6 +174,8 @@ class App extends Component {
 
             { this.state.modalOpen ? <EditModal editItem={this.editItem} closeModal = {this.closeEditModal} /> : "" }
             { this.state.deleteModalOpen ? <DeleteModal deleteItem={this.deleteItem} closeDeleteModal = {this.closeDeleteModal}/> : "" }
+            { this.state.warningModalOpen ? <WarningModal closeWarningModal = {this.closeWarningModal}/> : "" }
+
             </div>
         )
     }
